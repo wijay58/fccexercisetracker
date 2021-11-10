@@ -70,5 +70,16 @@ module.exports = {
                 }
             })
         }
+    },
+    getUsers: function(req,res) {
+        User.find(function(err,users) {
+            if(err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                res.status(200).send(users);
+            }
+        })
     }
 }
