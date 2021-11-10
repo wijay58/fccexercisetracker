@@ -51,7 +51,7 @@ module.exports = {
     },
     getExercises: async function(req,res) {
         if(!req.params) return res.send('not found');
-        let user = await User.findById(req.params.id);
+        let user = await User.findById(req.params._id);
         if(!user) return res.send('not found');
         else {
             let dateFrom = req.query.from;
