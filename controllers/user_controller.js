@@ -22,13 +22,16 @@ module.exports = {
     createExercise: async function(req,res) {
         if(!req.params) return res.send('not found');
         let user = await User.findById(req.params.id);
+        let date;
         if(!user) return res.send('not found');
         else {
+            if(req.body.date) date = req.body.date;
+            else date = new Date();
             let ex = new Exercise({
                 _id: mongoose.Types.ObjectId(),
                 username: user._doc.username,
                 duration: req.body.duration,
-                date: req.body.date,
+                date: date,
                 description: req.body.description
             })
             ex.save(function(err,exer){
