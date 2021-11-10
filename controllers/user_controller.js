@@ -65,7 +65,7 @@ module.exports = {
                 conditions.push({date: {$gte: dateFrom}});
             }
             if (!!dateTo) {
-                conditions.push({date: {$lte: dateFrom}});
+                conditions.push({date: {$lte: dateTo}});
             }
             conditions.push({username:user._doc.username});
             let final_condition = conditions.length ? {$and: conditions} : {};
