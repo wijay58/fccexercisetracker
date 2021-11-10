@@ -17,6 +17,9 @@ let ExerciseSchema = new Schema({
     duration: {
         type: Number,
         required: true
+    },
+    description: {
+        type: String
     }
 }, { versionKey: false })
 

@@ -28,7 +28,8 @@ module.exports = {
                 _id: mongoose.Types.ObjectId(),
                 username: user._doc.username,
                 duration: req.body.duration,
-                date: req.body.date
+                date: req.body.date,
+                description: req.body.description
             })
             ex.save(function(err,exer){
                 if (err) {
@@ -36,7 +37,14 @@ module.exports = {
                         error: err.message
                     });
                 } else {
-                    res.status(200).send(exer);
+                    let obj = {
+                        _id: user._doc._id,
+                        username: user._doc.username,
+                        date: exer._doc.date.toDateString(),
+                        duration: exer._doc.duration,
+                        description: exer._doc.description
+                    }
+                    res.status(200).send(obj);
                 }
             })
         }
