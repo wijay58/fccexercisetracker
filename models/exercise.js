@@ -23,4 +23,12 @@ let ExerciseSchema = new Schema({
     }
 }, { versionKey: false })
 
+ExerciseSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      delete returnedObject._id
+      delete returnedObject.username
+      returnedObject.date = returnedObject.date.toDateString()
+    }
+})
+
 module.exports = mongoose.model('exercise', ExerciseSchema);
