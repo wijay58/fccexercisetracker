@@ -74,7 +74,13 @@ module.exports = {
                         error: err.message
                     });
                 } else {
-                    res.status(200).send(exer);
+                    let obj = {
+                        _id: user._doc._id,
+                        username: user._doc.username,
+                        count: exer.length,
+                        log: exer
+                    }
+                    res.status(200).send(obj);
                 }
             })
         }
